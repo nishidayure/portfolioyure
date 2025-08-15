@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Introdução</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #000;
+      overflow: hidden;
+      height: 100%;
+    }
+    .container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1;
+    }
+    video {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
+      box-shadow: 0 0 40px rgba(127, 90, 240, 0.3); /* luz mais fraca */
+      z-index: 2;
+    }
+    .particles {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(127,90,240,0.1) 0%, transparent 60%);
+      z-index: 0;
+      overflow: hidden;
+    }
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: #fff;
+      border-radius: 50%;
+      opacity: 0.6;
+      animation: floatUp 12s linear infinite;
+    }
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.6;
+      }
+      100% {
+        transform: translateY(-10vh);
+        opacity: 0;
+      }
+    }
+    .skip-btn {
+      position: absolute;
+      bottom: 30px;
+      right: 30px;
+      background: rgba(127,90,240,0.9);
+      color: #fff;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+      display: none;
+      z-index: 3;
+      transition: background 0.3s;
+    }
+    .skip-btn:hover {
+      background: rgba(104,68,224,0.9);
+    }
+  </style>
+</head>
+<body>
+  <div class="particles" id="particles"></div>
+  <div class="container">
+    <video id="introVideo" autoplay muted playsinline>
+      <source src="Midias/videos/intro.mp4" type="video/mp4" />
+      Seu navegador não suporta vídeo.
+    </video>
+    <button id="skipBtn" class="skip-btn">Pular Introdução</button>
+  </div>
+
+  <footer style="position:absolute;bottom:0;width:100%;text-align:center;color:#888;padding:10px;font-size:0.9rem;">
+    &copy; 2025 Yure Rocha. Todos os direitos reservados.
+  </footer>
+
+  <script>
+    const video = document.getElementById('introVideo');
+    const skipBtn = document.getElementById('skipBtn');
+
+    // Redirecionar ao terminar
+    video.addEventListener('ended', () => {
+      window.location.href = 'index.html';
+    });
+
+    // Mostrar botão após 10 segundos
+    video.addEventListener('timeupdate', () => {
+      if (video.currentTime >= 10) {
+        skipBtn.style.display = 'block';
+      }
+    });
+
+    skipBtn.addEventListener('click', () => {
+      window.location.href = 'index.html';
+    });
+
+    // Criar partículas otimizadas
+    const particlesContainer = document.getElementById('particles');
+    const numParticles = 25; // menos partículas para desempenho
+
+    for (let i = 0; i < numParticles; i++) {
+      const particle = document.createElement('div');
+      particle.classList.add('particle');
+      particle.style.left = Math.random() * 100 + 'vw';
+      particle.style.animationDelay = Math.random() * 12 + 's';
+      particle.style.background = 'rgba(255,255,255,' + (Math.random() * 0.6 + 0.2) + ')';
+      const size = Math.random() * 3 + 2;
+      particle.style.width = size + 'px';
+      particle.style.height = size + 'px';
+      particlesContainer.appendChild(particle);
+    }
+
+    // Garantir autoplay quando possível
+    window.addEventListener('load', () => {
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(err => {
+          console.log('Autoplay bloqueado pelo navegador:', err);
+        });
+      }
+    });
+  </script>
+</body>
+</html>

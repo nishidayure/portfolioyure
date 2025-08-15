@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Galeria</title>
+  <link rel="stylesheet" href="style.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css"
+  />
+  <style>
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 40px;
+      margin-bottom: 20px;
+    }
+    .tabs button {
+      background: var(--card);
+      color: var(--text);
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .tabs button:hover,
+    .tabs button.active {
+      background: var(--primary);
+    }
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    .gallery-media {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+    .gallery-media img {
+      width: 300px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+    .video-wrapper {
+      position: relative;
+      width: 300px;
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .video-wrapper img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+    }
+    .play-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0,0,0,0.6);
+      border: none;
+      color: #fff;
+      font-size: 2rem;
+      padding: 15px 20px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .play-button:hover {
+      background: rgba(0,0,0,0.8);
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+    @keyframes fadeIn {
+      from {opacity:0;}
+      to {opacity:1;}
+    }
+    .back-button {
+      display: inline-block;
+      background: var(--primary);
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 4px;
+      text-decoration: none;
+      margin: 20px;
+      transition: transform 0.2s, background 0.3s;
+    }
+    .back-button:hover {
+      background: #6844e0;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-content">
+      <a href="index.html" class="back-button"><i class="fas fa-arrow-left"></i> Voltar</a>
+      <h1 style="text-align:center;">Galeria de Projetos</h1>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="tabs">
+      <button class="tab-link active" data-tab="design">Design</button>
+      <button class="tab-link" data-tab="webdesign">Web Design</button>
+      <button class="tab-link" data-tab="modelagem">Modelagem 3D</button>
+      <button class="tab-link" data-tab="video">Edição de Vídeo</button>
+      <button class="tab-link" data-tab="imagem">Edição de Imagem</button>
+    </div>
+
+    <div id="design" class="tab-content active">
+      <div class="gallery-media">
+        <img src="Midias/images/design1.jpg" alt="Design 1">
+        <img src="Midias/images/design2.jpg" alt="Design 2">
+        <div class="video-wrapper" data-video="Midias/videos/design.mp4">
+          <img src="Midias/images/capa-design.jpg" alt="Capa do vídeo Design" class="video-poster">
+          <button class="play-button"><i class="fas fa-play"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <div id="webdesign" class="tab-content">
+      <div class="gallery-media">
+        <img src="Midias/images/web1.jpg" alt="Web Design 1">
+        <img src="Midias/images/web2.jpg" alt="Web Design 2">
+        <div class="video-wrapper" data-video="Midias/videos/web.mp4">
+          <img src="Midias/images/capa-web.jpg" alt="Capa do vídeo Web Design" class="video-poster">
+          <button class="play-button"><i class="fas fa-play"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <div id="modelagem" class="tab-content">
+      <div class="gallery-media">
+        <img src="Midias/images/model1.jpg" alt="Modelagem 3D 1">
+        <img src="Midias/images/model2.jpg" alt="Modelagem 3D 2">
+        <div class="video-wrapper" data-video="Midias/videos/model.mp4">
+          <img src="Midias/images/capa-model.jpg" alt="Capa do vídeo Modelagem 3D" class="video-poster">
+          <button class="play-button"><i class="fas fa-play"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <div id="video" class="tab-content">
+      <div class="gallery-media">
+        <div class="video-wrapper" data-video="Midias/videos/video 0.mp4">
+          <img src="Midias/images/capa-video2.jpg" alt="Capa do vídeo Edição de Vídeo 1" class="video-poster">
+          <button class="play-button"><i class="fas fa-play"></i></button>
+        </div>
+
+        <div class="video-wrapper" data-video="Midias/videos/video 1.mp4">
+          <img src="Midias/images/capa-video1.jpg" alt="Capa do vídeo Edição de Vídeo 2" class="video-poster">
+          <button class="play-button"><i class="fas fa-play"></i></button>
+        </div>
+
+        <div class="video-wrapper" data-video="Midias/videos/video 2.mp4">
+          <img src="Midias/images/capa-design.jpg" alt="Capa do vídeo Edição de Vídeo 3" class="video-poster">
+          <button class="play-button"><i class="fas fa-play"></i></button>
+        </div>
+      </div>
+    </div>
+
+  <footer>
+    <p>&copy; 2025 Yure Rocha. Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    const tabLinks = document.querySelectorAll(".tab-link");
+    const tabContents = document.querySelectorAll(".tab-content");
+
+    tabLinks.forEach(link => {
+      link.addEventListener("click", () => {
+        tabLinks.forEach(btn => btn.classList.remove("active"));
+        link.classList.add("active");
+
+        const target = link.getAttribute("data-tab");
+        tabContents.forEach(content => {
+          content.classList.toggle("active", content.id === target);
+        });
+      });
+    });
+
+    const videoWrappers = document.querySelectorAll(".video-wrapper");
+
+    videoWrappers.forEach(wrapper => {
+      wrapper.addEventListener("click", () => {
+        const videoSrc = wrapper.getAttribute("data-video");
+        const video = document.createElement("video");
+        video.src = videoSrc;
+        video.controls = true;
+        video.autoplay = true;
+        video.style.width = "100%";
+        video.style.borderRadius = "8px";
+
+        // Ao iniciar um vídeo, pausar todos os outros
+        video.addEventListener("play", () => {
+          document.querySelectorAll("video").forEach(v => {
+            if (v !== video) {
+              v.pause();
+            }
+          });
+        });
+
+        wrapper.innerHTML = "";
+        wrapper.appendChild(video);
+      });
+    });
+  </script>
+</body>
+</html>
+
